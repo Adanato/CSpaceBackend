@@ -7,4 +7,12 @@ const {
   getCapybara,
   updateCapybara,
   deleteCapybara,
-} = require("../controller/capybaras");
+} = require("../controllers/capybaras");
+router.route("/").get(getAllCapybaras).post(createCapybara);
+router
+  .route("/:id")
+  .get(getCapybara)
+  .patch(updateCapybara)
+  .delete(deleteCapybara);
+
+module.exports = router;
