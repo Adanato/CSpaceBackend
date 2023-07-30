@@ -1,0 +1,42 @@
+[
+  {
+    "username": "gort",
+    "title": "First encounter with Capybara Space",
+    "description": "I love this website. The community is so welcoming and informative.",
+    "dateCreated": "2020-01-01T00:00:00.000Z",
+    "likes": 0,
+    "comments": []
+  },
+  {
+    "username": "capybara_lover",
+    "title": "Living the Capybara Life",
+    "description": "Absolutely fantastic site! I've learned so much about capybaras here.",
+    "dateCreated": "2021-01-01T00:00:00.000Z",
+    "likes": 0,
+    "comments": []
+  },
+  {
+    "username": "rodentFanatic",
+    "title": "Deep Dive into Capybara World",
+    "description": "Great resource for capybara enthusiasts. Love the interactive features.",
+    "dateCreated": "2021-01-01T00:00:00.000Z",
+    "likes": 0,
+    "comments": []
+  },
+  {
+    "username": "nature_enthusiast",
+    "title": "Nature and Capybaras Combined",
+    "description": "This site has the best capybara photos. Highly recommended for nature lovers.",
+    "dateCreated": "2019-01-01T00:00:00.000Z",
+    "likes": 0,
+    "comments": []
+  },
+  {
+    "username": "explorerMike",
+    "title": "Exploring the Capybara Universe",
+    "description": "The Capybara Space forums are a treasure trove of information. Great community.",
+    "dateCreated": "2018-01-01T00:00:00.000Z",
+    "likes": 0,
+    "comments": []
+  }
+]

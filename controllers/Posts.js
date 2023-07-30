@@ -1,17 +1,21 @@
-const Task = require("../models/Task");
+const Post = require("../models/Post");
+
+const DummyData = require("../dummydata");
+
 const asyncWrapper = require("../middleware/async");
 const { createCustomError } = require("../errors/custom-error");
-const getAllCapybaras = asyncWrapper(async (req, res) => {
-  const tasks = await Task.find();
-  res.status(200).json({ tasks });
+
+const getAllPosts = asyncWrapper(async (req, res) => {
+  const post = Post.find([]);
+  res.status(200).json(post);
 });
 
-const createCapybara = asyncWrapper(async (req, res) => {
+const createPost = asyncWrapper(async (req, res) => {
   const task = await Task.create(req.body);
   res.status(201).json({ task });
 });
 
-const getCapybara = asyncWrapper(async (req, res, next) => {
+const getPost = asyncWrapper(async (req, res, next) => {
   const { id: taskID } = req.params;
   const task = await Task.findOne({ _id: taskID });
   if (!task) {
@@ -21,7 +25,7 @@ const getCapybara = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ task });
 });
 
-const updateCapybara = asyncWrapper(async (req, res) => {
+const updatePost = asyncWrapper(async (req, res) => {
   const { id: taskID } = req.params;
   const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
     new: true,
@@ -34,7 +38,7 @@ const updateCapybara = asyncWrapper(async (req, res) => {
   res.status(200).json({ task });
 });
 
-const deleteCapybara = asyncWrapper(async (req, res) => {
+const deletePost = asyncWrapper(async (req, res) => {
   const { id: taskID } = req.params;
   const task = await Task.findOneAndDelete({ _id: taskID });
 
@@ -45,9 +49,9 @@ const deleteCapybara = asyncWrapper(async (req, res) => {
 });
 
 module.exports = {
-  getAllCapybaras,
-  createCapybara,
-  getCapybara,
-  updateCapybara,
-  deleteCapybara,
+  getAllPosts,
+  createPost,
+  getPost,
+  updatePost,
+  deletePost,
 };

@@ -4,7 +4,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     return res.status(err.status).json({ msg: err.message });
   }
 
-  return res.status(err.status).json({ msg: err.message });
+  return res.status(500).json({ msg: err.message }); // Changed here
 };
 
 module.exports = errorHandlerMiddleware;
