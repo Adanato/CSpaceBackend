@@ -19,9 +19,9 @@ const CommentSchema = new mongoose.Schema({
 const PostSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, "Must provide author"],
+    required: [true, "Must provide username"],
     trim: true,
-    maxlength: [50, "Author name cannot be more than 50 characters"],
+    maxlength: [50, "Username cannot be more than 50 characters"],
   },
   title: {
     type: String,
