@@ -1,3 +1,7 @@
+require("dotenv").config();
+require("express-async-errors");
+
+// express webserver main import
 const express = require("express");
 const app = express();
 
@@ -11,20 +15,37 @@ const xss = require("xss-clean");
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 
-//route imports
+//router imports
 const Posts = require("./routes/Posts");
 const Auth = require("./routes/Auth");
 
+// mongodb connecton import
 const connectDB = require("./db/connect");
-require("dotenv").config();
+
+// Error middleware import
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
 
-// middle ware
+// logging
+app.use(morgan());
+// middle ware activation
+app.set("trust proxy", 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 60,
+  })
+);
+app.use(helmet());
 app.use(cors());
-app.use(express.static("./public"));
+app.use(xss());
+app.use(mongoSanitize());
 app.use(express.json());
+app.use(cookieParser(process.env.JWT_SECRET));
+app.use(express.static("./public"));
+app.use(fileUpload());
 
+// router activation
 app.use("/api/v1/posts", Posts);
 app.use("/api/v1/auth", Auth);
 
