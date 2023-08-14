@@ -16,8 +16,8 @@ const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 
 //router imports
-const Posts = require("./routes/Posts");
-const Auth = require("./routes/Auth");
+const Posts = require("./routes/postsRoutes");
+const Auth = require("./routes/authRoutes");
 
 // mongodb connecton import
 const connectDB = require("./db/connect");

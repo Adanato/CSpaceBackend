@@ -1,5 +1,7 @@
+const { StatusCode } = require("http-status-codes");
+
 const register = (req, res) => {
-  res.send("register");
+  res.status(StatusCode.OK).send("register");
 };
 
 const login = (req, res) => {
