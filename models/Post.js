@@ -22,11 +22,6 @@ const PostSchema = new mongoose.Schema(
       required: [true, "Must provide description"],
       trim: true,
     },
-    space: {
-      type: String,
-      enum: ["software", "finance", "science"],
-      default: ["general"],
-    },
     likes: [
       {
         type: mongoose.Types.ObjectId,
