@@ -21,8 +21,10 @@ describe("Register from Routes", () => {
       .post("/api/v1/auth/register")
       .send(mockUserData);
 
-    console.log(res);
     expect(res.statusCode).toEqual(200);
+
+    // there should be a cookie
+    expect(res.headers["set-cookie"]).toBeDefined();
 
     expect(res.body).toMatchObject({
       name: "John Doe",

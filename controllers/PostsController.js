@@ -1,6 +1,5 @@
 const Post = require("../models/Post");
 
-const asyncWrapper = require("../middleware/async");
 const { createCustomError } = require("../errors/custom-error");
 
 const getAllPosts = asyncWrapper(async (req, res) => {
