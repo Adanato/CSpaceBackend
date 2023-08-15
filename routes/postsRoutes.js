@@ -7,7 +7,7 @@ const {
   getPost,
   updatePost,
   deletePost,
-} = require("../controllers/Posts");
+} = require("../controllers/postsController");
 
 router.route("/").get(getAllPosts).post(createPost);
 router.route("/:id").get(getPost).patch(updatePost).delete(deletePost);

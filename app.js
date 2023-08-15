@@ -27,7 +27,7 @@ const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
 
 // logging
-app.use(morgan());
+app.use(morgan("tiny"));
 // middle ware activation
 app.set("trust proxy", 1);
 app.use(
@@ -46,8 +46,8 @@ app.use(express.static("./public"));
 app.use(fileUpload());
 
 // router activation
-app.use("/api/v1/posts", Posts);
 app.use("/api/v1/auth", Auth);
+app.use("/api/v1/posts", Posts);
 
 //Error middleware
 app.use(notFound);

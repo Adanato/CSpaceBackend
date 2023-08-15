@@ -1,14 +1,26 @@
-const { StatusCode } = require("http-status-codes");
+const User = require("../models/User");
+const { StatusCodes } = require("http-status-codes");
+const CustomError = require("../errors");
+const { attachCookiesToResponse, createTokenUser } = require("../utils");
 
-const register = (req, res) => {
-  res.status(StatusCode.OK).send("register");
+const register = async (req, res) => {
+  const { email, name, password } = req.body;
+
+  const emailAlreadyExists = await User.findOne({ email });
+  if (emailAlreadyExists) {
+    throw new CustomError.BadRequestError("Email already exists");
+  }
+  const user = await User.create({ name, email, password, role });
+  const tokenUser = createTokenUser(user);
+  attachCookiesToResponse({ res, user: tokenUser });
+  res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
 
-const login = (req, res) => {
+const login = async (req, res) => {
   res.send("login");
 };
 
-const logout = (req, res) => {
+const logout = async (req, res) => {
   res.send("logout");
 };
 module.exports = {
