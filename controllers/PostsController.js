@@ -155,6 +155,7 @@ const unlikePost = async (req, res) => {
       "Please specify whether you want to like or dislike"
     );
   }
+
   if (!post) {
     throw new CustomError.NotFoundError(
       `Post wasnt found with id : ${post_id} `

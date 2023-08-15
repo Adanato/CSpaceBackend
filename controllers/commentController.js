@@ -2,12 +2,13 @@ const Comment = require("../models/Comment");
 const Post = require("../models/Post");
 
 const getAllComments = async (req, res) => {
-  const comments = Comment.find({});
-
-  res.status(StatusCodes.OK).json({ comments });
+  const { id: post_id } = req.params;
+  const comments = Comment.find({ post: post_id });
+  if (!comments) res.status(StatusCodes.OK).json({ comments });
 };
 
 const createComment = async (req, res) => {
+  const {userId}
   res.send("send all comments");
 };
 

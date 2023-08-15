@@ -7,14 +7,31 @@ const CommentSchema = new mongoose.Schema(
       ref: "Post",
       required: true,
     },
-    author: {
+    name: {
       type: String,
+      required: true,
+    },
+    userId: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     text: {
       type: String,
       required: true,
     },
+    likes: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    dislikes: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );
