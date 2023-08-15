@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema(
   {
+    userId: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     username: {
       type: String,
       required: [true, "Must provide author"],
@@ -19,6 +24,12 @@ const PostSchema = new mongoose.Schema(
     },
 
     likes: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    dislikes: [
       {
         type: mongoose.Types.ObjectId,
         ref: "User",
