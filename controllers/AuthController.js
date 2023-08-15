@@ -42,6 +42,7 @@ const login = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
 
+// immediately expires cookie and sends back a confirmation msg
 const logout = async (req, res) => {
   req.cookie("token", "logout", {
     httpOnly: true,
