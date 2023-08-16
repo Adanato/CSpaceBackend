@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { authenticateUser } = require("../middleware/authentication");
+
 const {
   getAllPosts,
   createPost,
@@ -28,12 +29,12 @@ router
 
 //Commenting route
 router
-  .route("/:id/comment")
+  .route("/:id/comments")
   .get(getAllComments)
   .post(authenticateUser, createComment);
 
 router
-  .route("/:id/comment/:comment_id")
+  .route("/:id/comments/:comment_id")
   .delete(authenticateUser, deleteComment)
   .patch(authenticateUser, updateComment);
 
