@@ -114,11 +114,10 @@ const likePost = async (req, res) => {
     );
   }
 
-  if (
-    type === "like" &&
-    !post.dislikes.includes(userId) &&
-    !post.likes.includes(userId)
-  ) {
+  if (type === "like" && !post.likes.includes(userId)) {
+    if (post.dislikes.includes(userId)) {
+      post.dislikes.pull(userId);
+    }
     post.likes.push(userId);
     await post.save();
     return res.status(StatusCodes.CREATED).json({ msg: "liked successfully" });
@@ -126,11 +125,10 @@ const likePost = async (req, res) => {
     return res.status(409).json({ error: "Resource already exists" });
   }
 
-  if (
-    type === "dislike" &&
-    !post.dislikes.includes(userId) &&
-    !post.likes.includes(userId)
-  ) {
+  if (type === "dislike" && !post.dislikes.includes(userId)) {
+    if (post.likes.includes(userId)) {
+      post.likes.pull(userId);
+    }
     post.dislikes.push(userId);
     await post.save();
     return res
@@ -162,21 +160,21 @@ const unlikePost = async (req, res) => {
     );
   }
 
-  if (type === "like" && post.likes.includes(userId)) {
+  if (post.likes.includes(userId)) {
     post.likes.pull(userId);
     await post.save();
     res.status(204).end();
-  } else if (type === "like") {
-    throw new CustomError.NotFoundError("like not found");
   }
 
   if (type === "dislike" && post.dislikes.includes(userId)) {
     post.dislikes.pull(userId);
     await post.save();
     res.status(204).json({ msg: "removed dislike" });
-  } else if (type === "dislike") {
-    throw new CustomError.NotFoundError("Dislike not found");
   }
+
+  throw new CustomError.NotFoundError(
+    "Likes and Dislikes doesn't contain user"
+  );
 };
 
 module.exports = {
