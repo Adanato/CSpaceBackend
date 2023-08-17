@@ -33,13 +33,14 @@ app.set("trust proxy", 1);
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000,
-    max: 60,
+    max: 150,
   })
 );
 app.use(helmet());
 app.use(
   cors({
     origin: "http://localhost:5173",
+    credentials: true,
   })
 );
 app.use(xss());
