@@ -10,7 +10,7 @@ const {
   deletePost,
   likePost,
   unlikePost,
-} = require("../controllers/postsController");
+} = require("../controllers/postsController.js");
 
 const {
   getAllComments,
